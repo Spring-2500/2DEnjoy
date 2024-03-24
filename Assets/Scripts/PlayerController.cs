@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     string nowAnime = "";
     string oldAnime = "";
 
+    public int score = 0; //スコア
+
     // Start is called before the first frame update
     void Start()
     {
@@ -142,6 +144,19 @@ public class PlayerController : MonoBehaviour
         else if(collision.gameObject.CompareTag("Dead"))
         {
             GameOver();
+        }
+
+        else if(collision.gameObject.CompareTag("ScoreItem"))
+        {
+            //スコアアイテム
+            //ItemDataを作る
+            ItemData item = collision.gameObject.GetComponent<ItemData>();
+
+            //スコアを得る
+            score = item.value;
+
+            //アイテムを削除する
+            Destroy(collision.gameObject);
         }
     }
 
